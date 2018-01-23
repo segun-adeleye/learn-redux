@@ -1,4 +1,23 @@
 import React from 'react';
 import { render } from 'react-dom';
+import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
-render(<p>Let's Get Reduxified!!!</p>, document.getElementById('root'));
+import css from './styles/style.styl';
+
+import Main from './components/Main';
+import PhotoGrid from './components/PhotoGrid';
+import Single from './components/Single';
+
+const router = (
+  <Router history={browserHistory}>
+    <Route path="/" component={Main}>
+      <IndexRoute component={PhotoGrid}></IndexRoute>
+      <Route path="/view/:photoId" component={Single} />
+    </Route>
+  </Router>
+)
+
+render(
+  router,
+  document.getElementById('root')
+);
