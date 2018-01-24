@@ -5,6 +5,13 @@ function postComment(state = [], action) {
         text: action.comment,
         user: action.author
       }];
+    case 'REMOVE_COMMENT':
+      return [
+        // array element before index action.i
+        ...state.slice(0, action.i),
+        // array element after index action.i
+        ...state.slice(action.i + 1)
+      ];
     default:
       return state;
   }
